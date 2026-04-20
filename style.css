@@ -237,3 +237,48 @@ section.allElems{
 .mark-imp label {
   font-size: 21px;
 }
+.daily-planner-fullpage{
+  display: block;
+}
+.daily-planner-fullpage h2{
+  font-size: 60px;
+}
+.daily-planner-fullpage .day-planner{
+  background-color: var(--tri2);
+  height: 85%;
+  margin-top: 40px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  overflow: auto;
+}
+.daily-planner-fullpage .day-planner .day-planner-time{
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 49%;
+  margin-bottom: 15px;
+
+}
+.day-planner .day-planner-time p{
+  position: absolute;
+  top: 12%;
+  left: 2%;
+  font-size: 20px;
+  color: var(--pri);
+}
+.day-planner .day-planner-time input{ 
+  padding: 20px 45px;
+  width: 100%;
+  background-color: var(--tri1);
+  border-radius: 5px;
+  border: none;
+  font-size: 35px;
+  padding-top: 34px; 
+  outline: none;
+  color: var(--pri);
+}
