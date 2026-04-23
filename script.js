@@ -66,36 +66,36 @@ function TodoList() {
 }
 TodoList();
 
-function dailyPlanner(){
+function dailyPlanner() {
   var dayPlanner = document.querySelector(".day-planner");
 
-var hours = Array.from(
-  { length: 18 },
-  (_, idx) => `${6 + idx}:00 - ${7 + idx}:00 `,
-);
+  var hours = Array.from(
+    { length: 18 },
+    (_, idx) => `${6 + idx}:00 - ${7 + idx}:00 `,
+  );
 
-var wholeDaySum = "";
-var dayPlannerData = JSON.parse(localStorage.getItem("dayPlannerData"))||{} || {};
+  var wholeDaySum = "";
+  var dayPlannerData =
+    JSON.parse(localStorage.getItem("dayPlannerData")) || {} || {};
 
-hours.forEach(function (elem, idx) {
-  var savedData = dayPlannerData[idx] || ''
-  wholeDaySum =
-    wholeDaySum +
-    `<div class="day-planner-time">
+  hours.forEach(function (elem, idx) {
+    var savedData = dayPlannerData[idx] || "";
+    wholeDaySum =
+      wholeDaySum +
+      `<div class="day-planner-time">
     <p>${elem}</p>
     <input id = ${idx} type="text" placeholder="..." value = ${savedData}>
     </div>`;
-});
-
-dayPlanner.innerHTML = wholeDaySum;
-var dayPlannerInput = document.querySelectorAll(".day-planner input");
-dayPlannerInput.forEach(function (elem) {
-  elem.addEventListener("input", function () {
-    dayPlannerData[elem.id] = elem.value;
-    localStorage.setItem("dayPlannerData", JSON.stringify(dayPlannerData));
   });
-});
 
+  dayPlanner.innerHTML = wholeDaySum;
+  var dayPlannerInput = document.querySelectorAll(".day-planner input");
+  dayPlannerInput.forEach(function (elem) {
+    elem.addEventListener("input", function () {
+      dayPlannerData[elem.id] = elem.value;
+      localStorage.setItem("dayPlannerData", JSON.stringify(dayPlannerData));
+    });
+  });
 }
 dailyPlanner();
 
@@ -112,3 +112,64 @@ function motivationalQuotes() {
 }
 motivationalQuotes();
 
+function pomoTimer() {
+  let timer = document.querySelector(".pomo-timer h1");
+  var startBtn = document.querySelector(".pomo-timer .start-timer");
+  var pauseBtn = document.querySelector(".pomo-timer .pause-timer");
+  var resetBtn = document.querySelector(".pomo-timer .reset-timer");
+  var session = document.querySelector(".pomodoro-fullpage .session");
+  var isWorkSession = true;
+  let totalSeconds = 25 * 60;
+  var timerInterval = null;
+  function upDateTimer() {
+    let min = Math.floor(totalSeconds / 60);
+    let sec = totalSeconds % 60;
+    timer.innerHTML = `${String(min).padStart("2", "0")}:${String(sec).padStart("2", "0")}`;
+  }
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    if (isWorkSession) {
+      timerInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          upDateTimer();
+        } else {
+          isWorkSession = false;
+          clearInterval(timerInterval);
+          timer.innerHTML = "05:00";
+          session.innerHTML = "Take A Break";
+          session.style.backgroundColor = "var(--blue)";
+          totalSeconds = 5 * 60;
+        }
+      }, 1000);
+    } else {
+      timerInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          upDateTimer();
+        } else {
+          isWorkSession = true;
+          clearInterval(timerInterval);
+          timer.innerHTML = "25:00";
+          session.innerHTML = "Work Session";
+          session.style.backgroundColor = "var(--green)";
+          totalSeconds = 25 * 60;
+        }
+      }, 1000);
+    }
+  }
+  function pauseTimer() {
+    clearInterval(timerInterval);
+  }
+  function resetTimer() {
+    totalSeconds = 25 * 60;
+    isWorkSession = true;
+    clearInterval(timerInterval);
+    upDateTimer();
+  }
+  startBtn.addEventListener("click", startTimer);
+  pauseBtn.addEventListener("click", pauseTimer);
+  resetBtn.addEventListener("click", resetTimer);
+}
+pomoTimer();

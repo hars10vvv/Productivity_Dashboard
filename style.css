@@ -4,6 +4,8 @@
   --tri1: #bda6ce;
   --tri2: #9b8ec7;
   --red: #ff0000;
+  --green:rgb(43, 239, 141);
+  --blue:rgb(64, 204, 255);
 }
 
 @font-face {
@@ -317,9 +319,9 @@ section.allElems {
   position: absolute;
   width: 100%;
   background-color: var(--tri2);
-  padding: 17px;
+  padding: 20px;
   border-radius: 30px;
-  border: 3px solid var(--pri);
+  border: 6px solid var(--pri);
 }
 .motivation-1 {
   margin-top: 20px;
@@ -368,7 +370,50 @@ section.allElems {
 .Motivational-fullpage .motivational-container .motivational-wrapper img{
   position: absolute;
   right: 10%;
-  top: 10%;
+  top: 15%;
   opacity: 0.7;
   scale: 2.5;
+}
+.pomodoro-fullpage{
+  /* display: block; */
+  position: relative;
+}
+.pomodoro-fullpage{
+  font-size: 40px;
+}
+.pomodoro-fullpage .pomo-timer{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.pomo-timer h1{
+  font-size: 170px;
+}
+.pomo-timer button{
+  background-color: var(--tri2);
+  padding: 15px 40px;
+  font-size: 32px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 5px 5px 0px black;
+  transition: all ease 0.1s;
+  font-weight: 700;
+}
+.pomo-timer button:active{
+  scale: 0.95;
+  box-shadow: 0px 0px 0px black;
+}
+.pomodoro-fullpage .session{
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translate(-50%,0);
+  background-color: var(--green);
+  padding: 15px 30px ;
+  border-radius: 10px;
+  font-size: 30px;
+
 }
