@@ -142,7 +142,7 @@ function pomoTimer() {
           session.style.backgroundColor = "var(--blue)";
           totalSeconds = 5 * 60;
         }
-      }, 1000);
+      }, 10);
     } else {
       timerInterval = setInterval(() => {
         if (totalSeconds > 0) {
@@ -156,7 +156,7 @@ function pomoTimer() {
           session.style.backgroundColor = "var(--green)";
           totalSeconds = 25 * 60;
         }
-      }, 1000);
+      }, 10);
     }
   }
   function pauseTimer() {
@@ -174,71 +174,78 @@ function pomoTimer() {
 }
 pomoTimer();
 
-var Header1Time = document.querySelector(".header1 h1");
-var Header1Date = document.querySelector(".header1 h2");
-var Header1Temp = document.querySelector(".header2 h2");
-var Header1Condition = document.querySelector(".header2 h4");
-var precipitation = document.querySelector(".header2 .precipitation");
-var humidity = document.querySelector(".header2 .humidity");
-var wind = document.querySelector(".header2 .wind");
-var city = "Bhopal";
-var data = null;
+function weatherFunctionality() {
+  var Header1Time = document.querySelector(".header1 h1");
+  var Header1Date = document.querySelector(".header1 h2");
+  var Header1Temp = document.querySelector(".header2 h2");
+  var Header1Condition = document.querySelector(".header2 h4");
+  var precipitation = document.querySelector(".header2 .precipitation");
+  var humidity = document.querySelector(".header2 .humidity");
+  var wind = document.querySelector(".header2 .wind");
+  var city = "Bhopal";
+  var data = null;
 
-async function weatherAPICall() {
-  var apiKey = "7160b581e9544a2db10101900262404";
-  var response = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`,
-  );
-  data = await response.json();
-  Header1Temp.innerHTML = `${data.current.temp_c}°C`;
-  Header1Condition.innerHTML = `${data.current.condition.text}`;
-  precipitation.innerHTML = `Precipitation: ${data.current.precip_mm}mm`;
-  humidity.innerHTML = `Humidity: ${data.current.humidity}%`;
-  wind.innerHTML = `Wind: ${data.current.wind_kph} km/h`;
+  async function weatherAPICall() {
+    var apiKey = "7160b581e9544a2db10101900262404";
+    var response = await fetch(
+      `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`,
+    );
+    data = await response.json();
+    Header1Temp.innerHTML = `${data.current.temp_c}°C`;
+    Header1Condition.innerHTML = `${data.current.condition.text}`;
+    precipitation.innerHTML = `Precipitation: ${data.current.precip_mm}mm`;
+    humidity.innerHTML = `Humidity: ${data.current.humidity}%`;
+    wind.innerHTML = `Wind: ${data.current.wind_kph} km/h`;
+  }
+  setInterval(() => {
+    weatherAPICall();
+  }, 1000);
+
+  function dateTime() {
+    const totalDays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    var date = new Date();
+    var daysOfWeek = totalDays[date.getDay()];
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    var tarik = date.getDate();
+    var month = monthNames[date.getMonth()];
+    var year = date.getFullYear();
+
+    var ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    Header1Time.innerHTML = `${daysOfWeek}, ${String(hours).padStart("2", "0")}:${String(minutes).padStart("2", "0")}:${String(seconds).padStart("2", "0")} ${ampm}`;
+    Header1Date.innerHTML = `${tarik} ${month} ${year}`;
+  }
+  dateTime();
+  setInterval(dateTime, 1000);
 }
-setInterval(() => {
-  weatherAPICall();
-}, 1000);
+weatherFunctionality();
 
-function dateTime() {
-  const totalDays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  var date = new Date();
-  var daysOfWeek = totalDays[date.getDay()];
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var seconds = date.getSeconds();
-  var tarik = date.getDate();
-  var month = monthNames[date.getMonth()];
-  var year = date.getFullYear();
 
-  var ampm = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-
-  Header1Time.innerHTML = `${daysOfWeek}, ${String(hours).padStart("2", "0")}:${String(minutes).padStart("2", "0")}:${String(seconds).padStart("2", "0")} ${ampm}`;
-  Header1Date.innerHTML = `${tarik} ${month} ${year}`;
-}
-dateTime();
-setInterval(dateTime, 1000);
+var rootElement = document.documentElement;
+rootElement.style.setProperty('--pri')

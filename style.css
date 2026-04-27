@@ -32,15 +32,16 @@
 }
 html,
 body {
-  height: 100%;
+  height: 105%;
   width: 100%;
 }
 #main {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background-color: black;
   color: white;
   background-color: var(--sec);
+  padding-top: 100px;
 }
 section.allElems {
   width: 100%;
@@ -55,10 +56,9 @@ section.allElems {
   align-items: flex-start;
   gap: 40px;
 }
-.allElems header{
-
+.allElems header {
   width: 100%;
-  background-image:url(https://images.unsplash.com/photo-1529528744093-6f8abeee511d?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-image: url(https://images.unsplash.com/photo-1529528744093-6f8abeee511d?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   background-size: cover;
   background-position-y: 77%;
   margin-bottom: 40px;
@@ -67,37 +67,35 @@ section.allElems {
   align-items: center;
   justify-content: space-between;
   padding: 50px;
-
 }
-.allElems .header1 h1{
+.allElems .header1 h1 {
   font-size: 100px;
   font-weight: 700;
-    margin-bottom: 45px;
-} 
-.allElems .header1 h2{
+  margin-bottom: 45px;
+}
+.allElems .header1 h2 {
   font-size: 30px;
   font-weight: 700;
-} 
-.allElems .header1 h4{
+}
+.allElems .header1 h4 {
   font-size: 70px;
   font-weight: 500;
-} 
-.allElems .header2 h2{
+}
+.allElems .header2 h2 {
   font-size: 60px;
   font-weight: 700;
-  
-} 
-.allElems .header2 h4{
+}
+.allElems .header2 h4 {
   font-size: 50px;
   margin-top: -10px;
   font-weight: 500;
   margin-bottom: 30px;
-} 
-.allElems .header2 h3{
+}
+.allElems .header2 h3 {
   font-size: 20px;
   opacity: 0.8;
   font-weight: 500;
-} 
+}
 .elems {
   position: relative;
   /* background-color: #9B8EC7; */
@@ -325,10 +323,6 @@ section.allElems {
   outline: none;
   color: var(--pri);
 }
-.Motivational-fullpage {
-  /* display: block; */
-  position: relative;
-}
 .motivation-fullPage-container {
   height: 100%;
   width: 100%;
@@ -414,10 +408,6 @@ section.allElems {
   scale: 2.5;
 }
 .pomodoro-fullpage {
-  /* display: block; */
-  position: relative;
-}
-.pomodoro-fullpage {
   font-size: 40px;
 }
 .pomodoro-fullpage .pomo-timer {
@@ -455,9 +445,37 @@ section.allElems {
   border-radius: 10px;
   font-size: 30px;
 }
-.theme{
-  position: absolute;
-  bottom: 5%;
-  left: 3%;
-  scale: 4;
+nav {
+  position: fixed;
+  z-index: 99;
+  height: 60px;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 30px 40px;
+  top: 0;
+}
+.nav-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--tri1);
+  padding: 20px 40px;
+  border-radius: 10px;
+}
+.nav-in h2 {
+  font-size: 30px;
+  font-weight: 700;
+}
+.theme {
+  background-color: var(--pri);
+  padding: 10px 10px;
+  border-radius: 50%;
+}
+.theme i {
+  color: var(--tri2);
+  font-weight: 700;
+  font-size: 25px;
+}
+.theme:active {
+  scale: 0.96;
 }
